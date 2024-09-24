@@ -1,0 +1,71 @@
+[gd_scene load_steps=13 format=3 uid="uid://c2j5ess25dvrr"]
+
+[ext_resource type="Script" path="res://weapons/revolver/revolver.gd" id="1_2t3jj"]
+[ext_resource type="Texture2D" uid="uid://bjpdh5s28dt5j" path="res://assets/spritesheets/Only weapons (Beginning ).png" id="1_k1lhd"]
+[ext_resource type="PackedScene" uid="uid://1lms6c35yjy2" path="res://components/attack/attack.tscn" id="2_mr2xu"]
+[ext_resource type="PackedScene" uid="uid://clm545b85o25t" path="res://particles/small_smoke_particle.tscn" id="4_5e68d"]
+[ext_resource type="PackedScene" uid="uid://df2ua3j2sw188" path="res://particles/spark_particle.tscn" id="4_8w582"]
+[ext_resource type="AudioStream" uid="uid://dd4snvbbx6ovf" path="res://weapons/revolver/sfx/bang_01.ogg" id="4_hdatl"]
+[ext_resource type="AudioStream" uid="uid://ul1nykovrlgp" path="res://weapons/revolver/sfx/bang_02.ogg" id="5_f1hu3"]
+[ext_resource type="AudioStream" uid="uid://cuww5i8jsxv60" path="res://weapons/revolver/sfx/bang_03.ogg" id="6_ucape"]
+[ext_resource type="AudioStream" uid="uid://be5g2hcq05tvp" path="res://weapons/revolver/sfx/bang_04.ogg" id="7_30auv"]
+[ext_resource type="AudioStream" uid="uid://xbj008cdekjd" path="res://weapons/revolver/sfx/wildwest_01.mp3" id="8_5vqrx"]
+[ext_resource type="AudioStream" uid="uid://b6snxk2yt5d2q" path="res://weapons/revolver/sfx/wildwest_02.mp3" id="9_0xohp"]
+[ext_resource type="AudioStream" uid="uid://lgu4lycq7lv7" path="res://weapons/revolver/sfx/wildwest_03.mp3" id="10_ejm10"]
+
+[node name="Revolver" type="Node2D"]
+script = ExtResource("1_2t3jj")
+
+[node name="Attack" parent="." instance=ExtResource("2_mr2xu")]
+attackDamage = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 0.785398
+texture = ExtResource("1_k1lhd")
+hframes = 11
+vframes = 13
+frame = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Barrel" type="Marker2D" parent="."]
+position = Vector2(8.215, -1.365)
+
+[node name="SmallSmokeParticle" parent="Barrel" instance=ExtResource("4_5e68d")]
+
+[node name="SparkParticle" parent="Barrel" instance=ExtResource("4_8w582")]
+
+[node name="Sfx" type="Node2D" parent="."]
+
+[node name="Bang" type="Node2D" parent="Sfx"]
+
+[node name="bang01" type="AudioStreamPlayer2D" parent="Sfx/Bang"]
+stream = ExtResource("4_hdatl")
+volume_db = -10.0
+
+[node name="bang02" type="AudioStreamPlayer2D" parent="Sfx/Bang"]
+stream = ExtResource("5_f1hu3")
+volume_db = -10.0
+
+[node name="bang03" type="AudioStreamPlayer2D" parent="Sfx/Bang"]
+stream = ExtResource("6_ucape")
+volume_db = -10.0
+
+[node name="bang04" type="AudioStreamPlayer2D" parent="Sfx/Bang"]
+stream = ExtResource("7_30auv")
+volume_db = -10.0
+
+[node name="WildWest" type="Node2D" parent="Sfx"]
+
+[node name="wildwest01" type="AudioStreamPlayer2D" parent="Sfx/WildWest"]
+stream = ExtResource("8_5vqrx")
+volume_db = -10.0
+
+[node name="wildwest02" type="AudioStreamPlayer2D" parent="Sfx/WildWest"]
+stream = ExtResource("9_0xohp")
+volume_db = -10.0
+
+[node name="wildwest03" type="AudioStreamPlayer2D" parent="Sfx/WildWest"]
+stream = ExtResource("10_ejm10")
+volume_db = -10.0

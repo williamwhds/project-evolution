@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://btewnfekafhj0"]
+
+[ext_resource type="Texture2D" uid="uid://bmdtyspqgjcrc" path="res://assets/spritesheets/hud_bar_under.png" id="1_0k5e8"]
+[ext_resource type="Script" path="res://ui/player_hud.gd" id="1_rodre"]
+[ext_resource type="Texture2D" uid="uid://flo638sxucxp" path="res://assets/spritesheets/hud_bar_progress.png" id="2_0165p"]
+
+[node name="PlayerHud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rodre")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+
+[node name="Healthbar" type="TextureProgressBar" parent="MarginContainer"]
+layout_mode = 2
+texture_under = ExtResource("1_0k5e8")
+texture_progress = ExtResource("2_0165p")

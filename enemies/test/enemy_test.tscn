@@ -1,0 +1,109 @@
+[gd_scene load_steps=18 format=3 uid="uid://dgiasu2ca5j00"]
+
+[ext_resource type="Script" path="res://enemies/test/enemy_test.gd" id="1_h6143"]
+[ext_resource type="Texture2D" uid="uid://d1ot1xwbbggny" path="res://assets/spritesheets/Small-8-Direction-Characters_by_AxulArt.png" id="1_oc0u2"]
+[ext_resource type="PackedScene" uid="uid://cq5jkjf5xi2n5" path="res://components/speedcomponent/speed_component.tscn" id="2_7xkxp"]
+[ext_resource type="PackedScene" uid="uid://cf522hs8xvrvd" path="res://components/pathfindcomponent/pathfind_component.tscn" id="2_qdcen"]
+[ext_resource type="PackedScene" uid="uid://vn5ts8xgpj5c" path="res://components/healthcomponent/health_component.tscn" id="2_upagl"]
+[ext_resource type="PackedScene" uid="uid://4lws7qp6csst" path="res://components/hurtboxcomponent/hurtbox_component.tscn" id="3_k0vij"]
+[ext_resource type="AudioStream" uid="uid://dbcrfck30jsvp" path="res://enemies/sfx/pain1.wav" id="5_cgc74"]
+[ext_resource type="AudioStream" uid="uid://d021ewg5utw0w" path="res://enemies/sfx/pain2.wav" id="6_yq1ml"]
+[ext_resource type="AudioStream" uid="uid://r8iids6yh82f" path="res://enemies/sfx/pain3.wav" id="7_wy5yc"]
+[ext_resource type="AudioStream" uid="uid://diay4cwqfappv" path="res://enemies/sfx/pain4.wav" id="8_qmldv"]
+[ext_resource type="AudioStream" uid="uid://blvf6qcylb2qi" path="res://enemies/sfx/death.wav" id="9_6ih2e"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wdncb"]
+radius = 0.689149
+height = 2.91584
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n81at"]
+atlas = ExtResource("1_oc0u2")
+region = Rect2(64, 216, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bqyl"]
+atlas = ExtResource("1_oc0u2")
+region = Rect2(64, 240, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxxyv"]
+atlas = ExtResource("1_oc0u2")
+region = Rect2(64, 264, 16, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mepye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n81at")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bqyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxxyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0bqyl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2qw8"]
+size = Vector2(6.625, 4.75)
+
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_h6143")
+
+[node name="SpeedComponent" parent="." instance=ExtResource("2_7xkxp")]
+speed = 30.0
+
+[node name="PathfindComponent" parent="." instance=ExtResource("2_qdcen")]
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_upagl")]
+maxHealth = 10.0
+
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("healthComponent") instance=ExtResource("3_k0vij")]
+healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(0, 3)
+scale = Vector2(5.80426, 4.80137)
+shape = SubResource("CapsuleShape2D_wdncb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_mepye")
+animation = &"idle"
+frame_progress = 0.109528
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.3125, 7.375)
+shape = SubResource("RectangleShape2D_y2qw8")
+metadata/_edit_lock_ = true
+
+[node name="Sfx" type="Node2D" parent="."]
+
+[node name="pain" type="Node2D" parent="Sfx"]
+
+[node name="pain1" type="AudioStreamPlayer2D" parent="Sfx/pain"]
+stream = ExtResource("5_cgc74")
+
+[node name="pain2" type="AudioStreamPlayer2D" parent="Sfx/pain"]
+stream = ExtResource("6_yq1ml")
+
+[node name="pain3" type="AudioStreamPlayer2D" parent="Sfx/pain"]
+stream = ExtResource("7_wy5yc")
+
+[node name="pain4" type="AudioStreamPlayer2D" parent="Sfx/pain"]
+stream = ExtResource("8_qmldv")
+
+[node name="death" type="Node2D" parent="Sfx"]
+
+[node name="death1" type="AudioStreamPlayer2D" parent="Sfx/death"]
+stream = ExtResource("9_6ih2e")
+
+[connection signal="death_sequence" from="HealthComponent" to="." method="_on_health_component_death_sequence"]
+[connection signal="damaged" from="HurtboxComponent" to="." method="_on_hurtbox_component_damaged"]
