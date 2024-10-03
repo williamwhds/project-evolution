@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://blgy737v2d33n"]
+
+[ext_resource type="Script" path="res://components/itemcomponent/item_detector.gd" id="1_7xo6e"]
+
+[node name="ItemDetector" type="Area2D"]
+script = ExtResource("1_7xo6e")
+
+[connection signal="body_entered" from="." to="." method="_on_item_entered"]

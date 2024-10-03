@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://cp86304bnayp3"]
+[gd_scene load_steps=5 format=4 uid="uid://cp86304bnayp3"]
 
 [ext_resource type="TileSet" uid="uid://dkhwxwj3ttlwv" path="res://assets/inside.tres" id="1_h26we"]
 [ext_resource type="PackedScene" uid="uid://bbu2taqcjvk2c" path="res://player/player.tscn" id="1_sjhq6"]
 [ext_resource type="PackedScene" uid="uid://dgiasu2ca5j00" path="res://enemies/test/enemy_test.tscn" id="3_dfy12"]
+[ext_resource type="PackedScene" uid="uid://c2j5ess25dvrr" path="res://weapons/revolver/revolver.tscn" id="4_ffecg"]
 
 [node name="Level1" type="Node2D"]
 
@@ -37,6 +38,9 @@ nodeFollow = NodePath("../../../Player")
 
 [node name="Player" parent="Ysort" instance=ExtResource("1_sjhq6")]
 position = Vector2(-52, -101)
+
+[node name="Revolver" parent="." instance=ExtResource("4_ffecg")]
+position = Vector2(-157, -86)
 
 [editable path="Ysort/Enemies/CharacterBody2D"]
 [editable path="Ysort/Enemies/CharacterBody2D2"]

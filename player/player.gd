@@ -4,10 +4,10 @@ extends CharacterBody2D
 
 @onready var speedCmpnt: SpeedComponent = $SpeedComponent
 @onready var anim_player = $AnimatedSprite2D
+@onready var invCmpnt: InventoryComponent = $InventoryComponent
 
 func _ready() -> void:
 	pass
-
 
 func _process(delta: float) -> void:
 	velocity = Vector2.ZERO

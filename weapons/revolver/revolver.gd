@@ -7,9 +7,8 @@ extends Weapon
 @onready var smokeParticle: GPUParticles2D = $Barrel/SmallSmokeParticle
 @onready var sparkParticle: GPUParticles2D = $Barrel/SparkParticle
 
-
 @onready var barrel: Marker2D = $Barrel
-@onready var bullet_scene: PackedScene = preload("res://weapons/revolver/bullet.tscn")
+@onready var bullet_scene: PackedScene = load("res://weapons/revolver/bullet.tscn")
 
 func attack() -> void:
 	create_bullet()
