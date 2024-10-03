@@ -1,4 +1,4 @@
-extends Node2D
+extends Item
 class_name Weapon
 
 func attack():
