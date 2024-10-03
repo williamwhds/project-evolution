@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbu2taqcjvk2c"]
+[gd_scene load_steps=12 format=3 uid="uid://bbu2taqcjvk2c"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_tm4tc"]
 [ext_resource type="SpriteFrames" uid="uid://df67dhfvul6xv" path="res://player/playerSpriteFrames.tres" id="2_0lygk"]
 [ext_resource type="PackedScene" uid="uid://4lws7qp6csst" path="res://components/hurtboxcomponent/hurtbox_component.tscn" id="2_1f2xf"]
 [ext_resource type="Script" path="res://components/inventorycomponent/inventory_component.gd" id="2_2rbup"]
 [ext_resource type="PackedScene" uid="uid://vn5ts8xgpj5c" path="res://components/healthcomponent/health_component.tscn" id="2_4gfmp"]
+[ext_resource type="PackedScene" uid="uid://blgy737v2d33n" path="res://components/itemcomponent/item_detector.tscn" id="2_chiju"]
 [ext_resource type="PackedScene" uid="uid://cq5jkjf5xi2n5" path="res://components/speedcomponent/speed_component.tscn" id="2_j6ddi"]
 [ext_resource type="PackedScene" uid="uid://btewnfekafhj0" path="res://ui/player_hud.tscn" id="6_jkl30"]
 [ext_resource type="PackedScene" uid="uid://b77veb3ixjfo7" path="res://ui/inventory_ui.tscn" id="8_s3v4e"]
@@ -15,13 +16,17 @@ size = Vector2(6.5, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jnu5"]
 size = Vector2(6.5, 5.5)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
 y_sort_enabled = true
 script = ExtResource("1_tm4tc")
+weapon = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.25, 7)
 shape = SubResource("RectangleShape2D_fg2ux")
+
+[node name="ItemDetector" parent="." instance=ExtResource("2_chiju")]
+position = Vector2(0, 5)
 
 [node name="InventoryComponent" type="Node2D" parent="."]
 script = ExtResource("2_2rbup")
