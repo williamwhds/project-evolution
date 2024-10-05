@@ -39,7 +39,7 @@ nodeFollow = NodePath("../../../Player")
 [node name="Player" parent="Ysort" instance=ExtResource("1_sjhq6")]
 position = Vector2(-52, -101)
 
-[node name="Revolver" parent="." instance=ExtResource("4_ffecg")]
+[node name="Revolver" parent="Ysort" instance=ExtResource("4_ffecg")]
 position = Vector2(-157, -86)
 
 [editable path="Ysort/Enemies/CharacterBody2D"]
