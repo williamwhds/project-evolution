@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbu2taqcjvk2c"]
+[gd_scene load_steps=13 format=3 uid="uid://bbu2taqcjvk2c"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_tm4tc"]
 [ext_resource type="SpriteFrames" uid="uid://df67dhfvul6xv" path="res://player/playerSpriteFrames.tres" id="2_0lygk"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cq5jkjf5xi2n5" path="res://components/speedcomponent/speed_component.tscn" id="2_j6ddi"]
 [ext_resource type="PackedScene" uid="uid://btewnfekafhj0" path="res://ui/player_hud.tscn" id="6_jkl30"]
 [ext_resource type="PackedScene" uid="uid://b77veb3ixjfo7" path="res://ui/inventory_ui.tscn" id="8_s3v4e"]
+[ext_resource type="PackedScene" uid="uid://wllgnbwsb3rs" path="res://ui/hold_interact.tscn" id="10_6tqbf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fg2ux"]
 size = Vector2(6.5, 6)
@@ -51,6 +52,8 @@ animation = &"downright"
 zoom = Vector2(2.5, 2.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
+
+[node name="HoldInteract" parent="." instance=ExtResource("10_6tqbf")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
