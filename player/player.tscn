@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bbu2taqcjvk2c"]
+[gd_scene load_steps=13 format=3 uid="uid://bbu2taqcjvk2c"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_tm4tc"]
 [ext_resource type="SpriteFrames" uid="uid://df67dhfvul6xv" path="res://player/playerSpriteFrames.tres" id="2_0lygk"]
@@ -13,6 +13,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fg2ux"]
 size = Vector2(6.5, 6)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5m14k"]
+radius = 7.0
+height = 32.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jnu5"]
 size = Vector2(6.5, 5.5)
 
@@ -24,8 +28,14 @@ script = ExtResource("1_tm4tc")
 position = Vector2(-0.25, 7)
 shape = SubResource("RectangleShape2D_fg2ux")
 
-[node name="ItemDetector" parent="." instance=ExtResource("2_chiju")]
+[node name="ItemDetector" parent="." node_paths=PackedStringArray("collision_shape", "inventory_component") instance=ExtResource("2_chiju")]
 position = Vector2(0, 5)
+collision_shape = NodePath("CollisionShape2D")
+inventory_component = NodePath("../InventoryComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemDetector"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_5m14k")
 
 [node name="InventoryComponent" type="Node2D" parent="."]
 script = ExtResource("2_2rbup")
