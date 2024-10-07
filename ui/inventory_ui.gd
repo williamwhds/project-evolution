@@ -10,8 +10,7 @@ func _ready() -> void:
 	for item in items:
 		if item == null:
 			continue
-		var item_img = item.get_node("Sprite2D")
-		grid.add_child(item_img)
+		# var item_img (try to get image here)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

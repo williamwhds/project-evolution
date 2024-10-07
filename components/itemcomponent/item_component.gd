@@ -4,6 +4,9 @@ class_name ItemComponent
 # Nodes with this component as a child will be treated as "items" that can be picked up.
 # Only nodes with InventoryComponent will be able to pick up items.
 @onready var area: Area2D = $Area2D
+@onready var stackable: bool = false # If true, the item can be stacked with other items of the same type.
+@onready var max_stack_size: int = 1 # The maximum amount of items that can be stacked together.
+
 var item_owner: Node = null
 
 signal changed_owner(new_owner: Node)
@@ -17,3 +20,9 @@ func set_item_owner(new_item_owner: Node) -> void:
 
 func get_item_owner() -> Node:
 	return item_owner
+
+func is_stackable() -> bool:
+	return stackable
+
+func get_max_stack_size() -> int:
+	return max_stack_size
