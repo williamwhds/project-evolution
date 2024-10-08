@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+# Maybe make it so the InventoryComponent returns the weapon instead of exporting it here?
+# Might make it easier to manage the inventory and making enemy AI use weapons if I decide to do that.
+
 @export var weapon: Weapon
 
 @onready var speedCmpnt: SpeedComponent = $SpeedComponent
