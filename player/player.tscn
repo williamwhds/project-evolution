@@ -22,9 +22,10 @@ height = 32.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jnu5"]
 size = Vector2(6.5, 5.5)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
 y_sort_enabled = true
 script = ExtResource("1_tm4tc")
+weapon = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.25, 7)

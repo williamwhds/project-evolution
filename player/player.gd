@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("fire_weapon"):
 		use_weapon()
 	
-	display_show_interact()
+	hold_interact_follow_first_nearby_item()
 
 func get_movement_direction() -> Vector2:
 	var direction = Vector2.ZERO
@@ -92,8 +92,22 @@ func use_weapon() -> void:
 
 # The following functions are for testing purposes ONLY. I'm just testing this system to see if it works.
 
-func display_show_interact() -> void:
-	hold_interact.position = canvas.node_to_canvas_position(self)
+func hold_interact_set_visible(new_visible: bool) -> void:
+	hold_interact.visible = new_visible
+
+func hold_interact_follow_node(node: Node2D) -> void:
+	hold_interact.position = canvas.node_to_canvas_position(node)
+
+# This looks ok-ish but ui element is following already owned items, and probably will follow items owned by other entities.
+# Gonna need to fix this later.
+
+func hold_interact_follow_first_nearby_item() -> void:
+	var item = item_detector.get_first_nearby_item()
+	if item == null:
+		hold_interact_set_visible(false)
+		return
+	hold_interact_set_visible(true)
+	hold_interact_follow_node(item)
 
 #func pickup_all_nearby_items() -> void:
 #	var item = item_detector.get_first_nearby_item()
