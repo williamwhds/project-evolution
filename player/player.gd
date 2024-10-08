@@ -6,6 +6,8 @@ extends CharacterBody2D
 @onready var anim_player = $AnimatedSprite2D
 @onready var invCmpnt: InventoryComponent = $InventoryComponent
 @onready var item_detector: ItemDetector = $ItemDetector
+@onready var canvas: CanvasLayer = $CanvasLayer
+@onready var hold_interact: HoldInteract = $CanvasLayer/HoldInteract
 
 func _ready() -> void:
 	pass
@@ -24,10 +26,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("fire_weapon"):
 		use_weapon()
 	
-	pickup_all_nearby_items()
-
-	if Input.is_action_just_released("interact"):
-		get_weapon_from_inventory()
+	display_show_interact()
 
 func get_movement_direction() -> Vector2:
 	var direction = Vector2.ZERO
@@ -92,43 +91,34 @@ func use_weapon() -> void:
 	weapon.attack()
 
 # The following functions are for testing purposes ONLY. I'm just testing this system to see if it works.
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
 
-func pickup_all_nearby_items() -> void:
-	var item = item_detector.get_first_nearby_item()
-	
-	if item == null:
-		return
-	if item.get_item_owner() == self:
-		return
-	
-	item_detector.nearby_items.erase(item)
-	invCmpnt.addItem(item)
-	item.set_item_owner(self)
-	item.get_parent().visible = false
-	print(invCmpnt.getInventory())
+func display_show_interact() -> void:
+	hold_interact.position = canvas.node_to_canvas_position(self)
 
-func get_weapon_from_inventory() -> void:
-	var weapon_item = invCmpnt.getInventory()[0]["item"]
-	if weapon_item == null:
-		print("No weapon in inventory!")
-		return
-	weapon = weapon_item.get_parent()
-	weapon.get_parent().remove_child(weapon) # Removing the weapon from the world
-	add_child(weapon) # Adding the weapon to the player's inventory component
-	weapon.visible = true # Weapon is now visible
-	weapon.global_position = global_position
-	add_child(weapon)
-	print("Got weapon from inventory!")
-	print(weapon)
+#func pickup_all_nearby_items() -> void:
+#	var item = item_detector.get_first_nearby_item()
+#	
+#	if item == null:
+#		return
+#	if item.get_item_owner() == self:
+#		return
+#	
+#	item_detector.nearby_items.erase(item)
+#	invCmpnt.addItem(item)
+#	item.set_item_owner(self)
+#	item.get_parent().visible = false
+#	print(invCmpnt.getInventory())
+#
+#func get_weapon_from_inventory() -> void:
+#	var weapon_item = invCmpnt.getInventory()[0]["item"]
+#	if weapon_item == null:
+#		print("No weapon in inventory!")
+#		return
+#	weapon = weapon_item.get_parent()
+#	weapon.get_parent().remove_child(weapon) # Removing the weapon from the world
+#	add_child(weapon) # Adding the weapon to the player's inventory component
+#	weapon.visible = true # Weapon is now visible
+#	weapon.global_position = global_position
+#	add_child(weapon)
+#	print("Got weapon from inventory!")
+#	print(weapon)

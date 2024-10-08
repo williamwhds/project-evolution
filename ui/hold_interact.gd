@@ -1,4 +1,5 @@
 extends Control
+class_name HoldInteract
 
 # This is a UI element that will prompt the player to hold a button to interact with an object.
 # TODO: Enlarge the range of the progress bar so it doesn't look choppy when filling up.
