@@ -71,6 +71,10 @@ script = ExtResource("8_4s4c0")
 scale = Vector2(0.5, 0.5)
 
 [node name="InventoryUi" parent="CanvasLayer" instance=ExtResource("8_s3v4e")]
+anchors_preset = 5
+anchor_top = 0.0
+anchor_bottom = 0.0
+grow_vertical = 1
 
 [node name="HoldInteract" parent="CanvasLayer" instance=ExtResource("11_xxbyd")]
 

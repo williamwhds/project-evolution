@@ -17,3 +17,4 @@ script = ExtResource("1_4qehb")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 0
+columns = 10

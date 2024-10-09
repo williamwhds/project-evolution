@@ -11,6 +11,7 @@ extends CharacterBody2D
 @onready var item_detector: ItemDetector = $ItemDetector
 @onready var canvas: CanvasLayer = $CanvasLayer
 @onready var hold_interact: HoldInteract = $CanvasLayer/HoldInteract
+@onready var inventory_ui: InventoryUI = $CanvasLayer/InventoryUi
 
 func _ready() -> void:
 	pass
@@ -118,7 +119,7 @@ func hold_interact_follow_first_nearby_item() -> void:
 	hold_interact_follow_node(item)
 
 
-# Picking up the item, adding it to the inventory, making it invisible, and reparenting it to the player.
+# Picking up the item, adding it to the inventory, making it invisible, reparenting it to the player and updating the inventory UI.
 func _on_hold_interact_hold_complete() -> void:
 	var item = item_detector.get_first_nearby_item() as ItemComponent
 	if item == null:
@@ -128,6 +129,7 @@ func _on_hold_interact_hold_complete() -> void:
 	item.set_item_owner(self)
 	item.get_parent().visible = false
 	item.get_parent().reparent(self)
+	inventory_ui.display_inventory()
 
 #func pickup_all_nearby_items() -> void:
 #	var item = item_detector.get_first_nearby_item()
@@ -156,5 +158,3 @@ func _on_hold_interact_hold_complete() -> void:
 #	add_child(weapon)
 #	print("Got weapon from inventory!")
 #	print(weapon)
-
-

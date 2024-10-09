@@ -6,6 +6,7 @@ class_name ItemComponent
 @onready var area: Area2D = $Area2D
 @onready var stackable: bool = false # If true, the item can be stacked with other items of the same type.
 @onready var max_stack_size: int = 1 # The maximum amount of items that can be stacked together.
+@export var texture: Texture = null # For inventory UI purposes
 
 var item_owner: Node = null
 
@@ -26,3 +27,6 @@ func is_stackable() -> bool:
 
 func get_max_stack_size() -> int:
 	return max_stack_size
+
+func get_texture() -> Texture:
+	return texture

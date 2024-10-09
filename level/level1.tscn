@@ -39,8 +39,17 @@ nodeFollow = NodePath("../../../Player")
 [node name="Player" parent="Ysort" instance=ExtResource("1_sjhq6")]
 position = Vector2(-52, -101)
 
+[node name="Revolver2" parent="Ysort" instance=ExtResource("4_ffecg")]
+position = Vector2(-195, -118)
+
 [node name="Revolver" parent="Ysort" instance=ExtResource("4_ffecg")]
-position = Vector2(-157, -86)
+position = Vector2(-151, -88)
+
+[node name="Revolver3" parent="Ysort" instance=ExtResource("4_ffecg")]
+position = Vector2(-191, -66)
+
+[node name="Revolver4" parent="Ysort" instance=ExtResource("4_ffecg")]
+position = Vector2(-180, -114)
 
 [editable path="Ysort/Enemies/CharacterBody2D"]
 [editable path="Ysort/Enemies/CharacterBody2D2"]
