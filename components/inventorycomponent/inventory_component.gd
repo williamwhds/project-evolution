@@ -10,6 +10,8 @@ var inventory : Array = []
 # TODO: Allow changing the inventory size mid-game. This may require a function to remove items from the inventory if the new
 # size is smaller.
 #
+# TODO: Change item quantity system. When picking up the item, a reference to the item is added to the inventory, and the item is
+# reparented to the player or entity (NOT INVENTORY COMPONENT). Dealing with multiple items like this is going to be a pain.
 
 func _ready():
 	for i in range(inventorySize):

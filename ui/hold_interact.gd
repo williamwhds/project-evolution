@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 			current_hold_time = 0
 			texture_progress_bar.value = 0
 			hold_complete.emit()
-			print("Hold complete!")
+			#print("Hold complete!")
 	else:
 		current_hold_time = 0
 		texture_progress_bar.value = 0

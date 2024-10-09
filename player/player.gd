@@ -31,6 +31,11 @@ func _process(delta: float) -> void:
 	
 	hold_interact_follow_first_nearby_item()
 
+	if Input.is_action_just_pressed("interact") and hold_interact.visible:
+		hold_interact.set_is_holding(true)
+	elif Input.is_action_just_released("interact") or !hold_interact.visible:
+		hold_interact.set_is_holding(false)
+
 func get_movement_direction() -> Vector2:
 	var direction = Vector2.ZERO
 	if Input.is_action_pressed("right"):
@@ -112,6 +117,18 @@ func hold_interact_follow_first_nearby_item() -> void:
 	hold_interact_set_visible(true)
 	hold_interact_follow_node(item)
 
+
+# Picking up the item, adding it to the inventory, making it invisible, and reparenting it to the player.
+func _on_hold_interact_hold_complete() -> void:
+	var item = item_detector.get_first_nearby_item() as ItemComponent
+	if item == null:
+		return
+	item_detector.nearby_items.erase(item)
+	invCmpnt.addItem(item)
+	item.set_item_owner(self)
+	item.get_parent().visible = false
+	item.get_parent().reparent(self)
+
 #func pickup_all_nearby_items() -> void:
 #	var item = item_detector.get_first_nearby_item()
 #	
@@ -139,3 +156,5 @@ func hold_interact_follow_first_nearby_item() -> void:
 #	add_child(weapon)
 #	print("Got weapon from inventory!")
 #	print(weapon)
+
+

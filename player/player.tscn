@@ -22,10 +22,9 @@ height = 32.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jnu5"]
 size = Vector2(6.5, 5.5)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
+[node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_tm4tc")
-weapon = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.25, 7)
@@ -77,3 +76,4 @@ scale = Vector2(0.5, 0.5)
 
 [connection signal="area_entered" from="ItemDetector" to="ItemDetector" method="_on_item_entered"]
 [connection signal="area_exited" from="ItemDetector" to="ItemDetector" method="_on_item_exited"]
+[connection signal="hold_complete" from="CanvasLayer/HoldInteract" to="." method="_on_hold_interact_hold_complete"]
