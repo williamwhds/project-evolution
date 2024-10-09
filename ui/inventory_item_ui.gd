@@ -1,7 +1,7 @@
 extends Control
 
-@onready var item_image: TextureRect = $ItemImage
-@onready var item_quantity: Label = $ItemQuantity
+@onready var item_image: TextureRect = $Container/ItemImage
+@onready var item_quantity: Label = $Container/ItemQuantity
 
 # Function to set the item image
 func set_item_image(texture: Texture) -> void:
