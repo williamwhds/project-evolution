@@ -27,13 +27,13 @@ y_sort_enabled = true
 [node name="CharacterBody2D" parent="Ysort/Enemies" instance=ExtResource("3_dfy12")]
 position = Vector2(-10, -57)
 
-[node name="PathfindComponent" parent="Ysort/Enemies/CharacterBody2D" index="1" node_paths=PackedStringArray("nodeFollow")]
+[node name="PathfindComponent" parent="Ysort/Enemies/CharacterBody2D" index="2" node_paths=PackedStringArray("nodeFollow")]
 nodeFollow = NodePath("../../../Player")
 
 [node name="CharacterBody2D2" parent="Ysort/Enemies" instance=ExtResource("3_dfy12")]
 position = Vector2(-73, -46)
 
-[node name="PathfindComponent" parent="Ysort/Enemies/CharacterBody2D2" index="1" node_paths=PackedStringArray("nodeFollow")]
+[node name="PathfindComponent" parent="Ysort/Enemies/CharacterBody2D2" index="2" node_paths=PackedStringArray("nodeFollow")]
 nodeFollow = NodePath("../../../Player")
 
 [node name="Player" parent="Ysort" instance=ExtResource("1_sjhq6")]

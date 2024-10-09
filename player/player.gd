@@ -120,6 +120,8 @@ func hold_interact_follow_first_nearby_item() -> void:
 
 
 # Picking up the item, adding it to the inventory, making it invisible, reparenting it to the player and updating the inventory UI.
+# TODO: If the first_nearby_item changes in the middle of holding, the bar should reset. Fix that later.
+# TODO: If the player's inventory is full, this shouldn't run. Fix this later.
 func _on_hold_interact_hold_complete() -> void:
 	var item = item_detector.get_first_nearby_item() as ItemComponent
 	if item == null:

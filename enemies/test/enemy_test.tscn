@@ -1,10 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://dgiasu2ca5j00"]
+[gd_scene load_steps=20 format=3 uid="uid://dgiasu2ca5j00"]
 
 [ext_resource type="Script" path="res://enemies/test/enemy_test.gd" id="1_h6143"]
 [ext_resource type="Texture2D" uid="uid://d1ot1xwbbggny" path="res://assets/spritesheets/Small-8-Direction-Characters_by_AxulArt.png" id="1_oc0u2"]
 [ext_resource type="PackedScene" uid="uid://cq5jkjf5xi2n5" path="res://components/speedcomponent/speed_component.tscn" id="2_7xkxp"]
+[ext_resource type="PackedScene" uid="uid://dhuggbqjwdi76" path="res://components/itemcomponent/item_component.tscn" id="2_pl00y"]
 [ext_resource type="PackedScene" uid="uid://cf522hs8xvrvd" path="res://components/pathfindcomponent/pathfind_component.tscn" id="2_qdcen"]
 [ext_resource type="PackedScene" uid="uid://vn5ts8xgpj5c" path="res://components/healthcomponent/health_component.tscn" id="2_upagl"]
+[ext_resource type="Texture2D" uid="uid://byskokb0ylrh7" path="res://assets/spritesheets/enemy_test_mugshot.png" id="3_iope6"]
 [ext_resource type="PackedScene" uid="uid://4lws7qp6csst" path="res://components/hurtboxcomponent/hurtbox_component.tscn" id="3_k0vij"]
 [ext_resource type="AudioStream" uid="uid://dbcrfck30jsvp" path="res://enemies/sfx/pain1.wav" id="5_cgc74"]
 [ext_resource type="AudioStream" uid="uid://d021ewg5utw0w" path="res://enemies/sfx/pain2.wav" id="6_yq1ml"]
@@ -55,6 +57,9 @@ size = Vector2(6.625, 4.75)
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_h6143")
+
+[node name="ItemComponent" parent="." instance=ExtResource("2_pl00y")]
+texture = ExtResource("3_iope6")
 
 [node name="SpeedComponent" parent="." instance=ExtResource("2_7xkxp")]
 speed = 30.0
